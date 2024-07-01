@@ -2,7 +2,7 @@ import { useRive } from "@rive-app/react-canvas";
 import bubbleRive from "./sparks-blob-v1.riv?url";
 
 function App() {
-  const { RiveComponent } = useRive({
+  const { RiveComponent, canvas } = useRive({
     src: bubbleRive,
     stateMachines: "blob-v1",
     autoplay: true,
@@ -28,7 +28,19 @@ function App() {
       <div className="ring-1 size-[400px]">
         <RiveComponent
           id="rive-canvas"
-          onPointerMove={() => {
+          onPointerMove={(event) => {
+            // -------------------------------
+            // Hacky fix. Uncomment
+            // const mouseEvent = new MouseEvent("mousemove", {
+            //   clientX: event.clientX,
+            //   clientY: event.clientY,
+            //   bubbles: false,
+            //   cancelable: true,
+            // });
+            //
+            // canvas?.dispatchEvent(mouseEvent);
+            // ----------------------------------
+
             console.log(":: onPointerMove (rive component / canvas)");
           }}
         />
